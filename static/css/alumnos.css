@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf8ff,
+        #f7fff9
+    );
+}
+
+/* TITULO PRINCIPAL */
+
+.titulo{
+    font-size:3rem;
+    font-weight:700;
+    color:#8B6BE8;
+}
+
+.text-muted{
+    font-size:1.05rem;
+    color:#8a8a8a !important;
+}
+
+/* TARJETAS */
+
+.card{
+    border:none;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.95);
+
+    box-shadow:
+    0 10px 30px rgba(139,107,232,.12);
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+}
+
+/* TITULOS */
+
+h3{
+    color:#7c67c5;
+    font-weight:700;
+}
+
+h5{
+    color:#6c5ab6;
+    font-weight:600;
+}
+
+/* LABELS */
+
+.form-label{
+    color:#666;
+    font-weight:500;
+}
+
+/* INPUTS */
+
+.form-control{
+    border:none;
+
+    border-radius:15px;
+
+    padding:12px;
+
+    background:#f4eefc;
+}
+
+.form-control:focus{
+    background:white;
+
+    box-shadow:
+    0 0 0 4px rgba(139,107,232,.15);
+
+    border:none;
+}
+
+/* BOTON PRINCIPAL */
+
+.btn-verde{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:10px 20px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.btn-verde:hover{
+    color:white;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 20px rgba(111,207,151,.35);
+}
+
+/* BOTON EDITAR */
+
+.btn-warning{
+    background:#f4b860;
+    border:none;
+    color:white;
+}
+
+.btn-warning:hover{
+    background:#eda842;
+    color:white;
+}
+
+/* TABLA */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead th{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    font-weight:600;
+
+    padding:15px;
+}
+
+.table tbody tr{
+    background:white;
+
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#faf7ff;
+}
+
+.table td{
+    vertical-align:middle;
+    padding:15px;
+}
+
+/* MODAL */
+
+.modal-content{
+    border:none;
+
+    border-radius:25px;
+
+    overflow:hidden;
+}
+
+.modal-header{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+}
+
+.modal-title{
+    font-weight:600;
+}
+
+.modal-footer{
+    border:none;
+}
+
+
+
+.btn-close{
+    filter:brightness(0) invert(1);
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f2f2f2;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B89AEF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#8B6BE8;
+}
+
+
+@media(max-width:768px){
+
+    .titulo{
+        font-size:2.2rem;
+    }
+
+    .card{
+        padding:5px;
+    }
+}

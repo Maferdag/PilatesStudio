@@ -1,0 +1,350 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf7ff,
+        #f6fff9
+    );
+
+    color: #383343;
+}
+
+/* =========================================
+   BARRA DE NAVEGACIÓN
+========================================= */
+
+.barra-superior {
+    background: rgba(255,255,255,.93);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+    0 5px 25px rgba(139,107,232,.08);
+
+    padding: 15px 0;
+
+    margin-bottom: 40px;
+}
+
+.barra-superior .navbar-brand {
+    color: #8063C7;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.barra-superior .nav-link {
+    color: #777180;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: .3s;
+}
+
+.barra-superior .nav-link:hover {
+    color: #8063C7;
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
+.container.pb-5 {
+    max-width: 1150px;
+}
+
+/* =========================================
+   TÍTULO PRINCIPAL
+========================================= */
+
+h1 {
+    color: #6c56c8;
+
+    font-size: 2rem;
+    font-weight: 700;
+
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   MENSAJES DEL SISTEMA
+========================================= */
+
+.alerta-salvia {
+    background: #EAF8EF;
+
+    color: #399B70;
+
+    border: 1px solid #D5EFDF;
+    border-left: 5px solid #6FCF97;
+
+    border-radius: 15px;
+
+    padding: 15px 20px;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* =========================================
+   TARJETA DE RESERVAS
+========================================= */
+
+.tarjeta {
+    background: rgba(255,255,255,.95);
+
+    border: none;
+
+    border-radius: 25px;
+
+    padding: 28px;
+
+    box-shadow:
+    0 10px 30px rgba(139,107,232,.12);
+}
+
+/* =========================================
+   TABLA DE RESERVAS
+========================================= */
+
+.table-responsive {
+    border-radius: 20px;
+}
+
+.table {
+    margin-bottom: 0;
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    color: #383343;
+}
+
+.table thead th {
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color: white;
+
+    border: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    padding: 16px;
+
+    white-space: nowrap;
+}
+
+.table tbody tr {
+    background: white;
+
+    transition: .25s;
+}
+
+.table tbody tr:hover > * {
+    background: #faf7ff;
+    color: #383343;
+}
+
+.table td {
+    vertical-align: middle;
+
+    padding: 16px;
+
+    color: #666;
+
+    font-size: 12px;
+
+    border-color: #F0EBF7;
+}
+
+/* =========================================
+   ESTADOS DE LAS RESERVAS
+========================================= */
+
+.insignia {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.insignia-confirmada {
+    background: #EAF8EF;
+    color: #399B70;
+}
+
+.insignia-cancelada {
+    background: #FFF0F1;
+    color: #C36B79;
+}
+
+.insignia-pendiente {
+    background: #F2EDFC;
+    color: #8063C7;
+}
+
+/* =========================================
+   BOTÓN CANCELAR
+========================================= */
+
+.btn-cancelar {
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color: white;
+
+    border: none;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    padding: 9px 18px;
+
+    transition: .3s;
+}
+
+.btn-cancelar:hover {
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+    0 10px 20px rgba(111,207,151,.35);
+}
+
+/* =========================================
+   MENSAJE CUANDO NO HAY RESERVAS
+========================================= */
+
+.table tbody td.text-center {
+    padding: 35px 20px !important;
+
+    color: #8d8d8d;
+
+    background: white;
+
+    font-size: 13px;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #efefef;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #B89AEF;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8B6BE8;
+}
+
+/* =========================================
+   DISEÑO RESPONSIVE
+========================================= */
+
+@media(max-width: 768px) {
+
+    .barra-superior {
+        margin-bottom: 25px;
+    }
+
+    .barra-superior .container {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .barra-superior .navbar-brand {
+        width: 100%;
+        text-align: center;
+    }
+
+    .barra-superior .container > div {
+        justify-content: center;
+    }
+
+    .container.pb-5 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .tarjeta {
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .table td,
+    .table thead th {
+        padding: 12px;
+        font-size: 11px;
+    }
+}
+
+@media(max-width: 480px) {
+
+    .barra-superior .nav-link {
+        font-size: 11px;
+    }
+
+    .tarjeta {
+        padding: 12px;
+    }
+}

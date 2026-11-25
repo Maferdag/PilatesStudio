@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+venv/
+.venv/
+
+# Variables privadas
+.env
+.env/
+.env.local
+*.env
+
+# Bases de datos locales
+*.db
+*.db-journal
+
+# VS Code
+.vscode/
+
+# Migraciones y archivos temporales
+.pytest_cache/
+.coverage

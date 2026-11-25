@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf7ff,
+        #f6fff9
+    );
+}
+
+/* TITULO */
+
+.titulo{
+    color:#8B6BE8;
+    font-size:3rem;
+    font-weight:700;
+}
+
+.text-muted{
+    color:#888 !important;
+}
+
+/* NAVEGACION */
+
+.btn-outline-secondary,
+.btn-outline-success{
+    border-radius:15px;
+    font-weight:500;
+}
+
+/* TARJETAS */
+
+.card{
+    background:rgba(255,255,255,.95);
+
+    border:none;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px rgba(139,107,232,.12);
+}
+
+/* TITULOS */
+
+h3{
+    color:#6c56c8;
+    font-weight:700;
+}
+
+h5{
+    color:#6c56*8;
+    font-weight:600;
+}
+
+/* LABELS */
+
+label{
+    color:#666;
+    font-weight:500;
+}
+
+/* INPUTS */
+
+.form-control{
+    background:#f5f0ff;
+
+    border:none;
+
+   border-radius:15px;
+
+    padding:12px;
+}
+
+.form-control:focus{
+   background:white;
+
+    border:none;
+
+    box-shadow:
+    0 0 0 4px rgba(139,107,232,.15);
+}
+
+/* BOTON PRINCIPAL */
+
+.btn-verde{
+    background:
+   linear-gradient(
+        135deg,
+       #B89AEF,
+        #6FCF97
+   );
+
+    color:white;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:10px 20px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.btn-verde:hover{
+    color:white;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 20px rgba(111,207,151,.35);
+}
+
+/* BOTON EDITAR */
+
+.btn-warning{
+    background:#ffc47c;
+    border:none;
+    color:white;
+}
+
+.btn-warning:hover{
+    background:#e59f42;
+    color:white;
+}
+
+/* TABLA */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead th{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    font-weight:600;
+
+    padding:15px;
+}
+
+.table tbody tr{
+    background:white;
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#faf7ff;
+}
+
+.table td{
+    vertical-align:middle;
+    padding:15px;
+}
+
+/* MODALES */
+
+.modal-content{
+    border:none;
+
+    border-radius:25px;
+
+    overflow:hidden;
+}
+
+.modal-header{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+}
+
+.modal-title{
+    font-weight:600;
+}
+
+.modal-footer{
+    border:none;
+}
+
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#efefef;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B89AEF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#8B6BE8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .titulo{
+        font-size:2.2rem;
+    }
+
+    .card{
+        padding:5px;
+    }
+}

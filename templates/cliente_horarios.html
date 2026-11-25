@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horarios - Pilates Studio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/clientes_horarios.css') }}">
+</head>
+<body>
+
+<nav class="navbar barra-superior">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="{{ url_for('inicio') }}">🌿 Pilates Studio</a>
+    <div class="d-flex flex-wrap gap-3">
+      <a class="nav-link" href="{{ url_for('cliente_planes') }}">Planes</a>
+      <a class="nav-link" href="{{ url_for('cliente_horarios') }}">Reservar clases</a>
+      <a class="nav-link" href="{{ url_for('cliente_mis_reservas') }}">Mis reservas</a>
+      <a class="nav-link" href="{{ url_for('cliente_mis_pagos') }}">Mis pagos</a>
+      <a class="nav-link" href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container pb-5">
+
+  {% with mensajes = get_flashed_messages() %}
+    {% for m in mensajes %}
+      <div class="alert alerta-salvia mt-3">{{ m }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <h1>Horarios disponibles</h1>
+
+  <div class="tarjeta">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Clase</th>
+            <th>Instructor</th>
+            <th>Cupos</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in datos %}
+          <tr>
+            <td>{{ item.horario.fecha.strftime("%d/%m/%Y") }}</td>
+            <td>{{ item.horario.hora.strftime("%H:%M") }}</td>
+            <td>{{ item.horario.clase.nombre_clase }}</td>
+            <td>{{ item.horario.instructor.nombre_completo }}</td>
+            <td>
+              {% if item.libres > 0 %}
+              <span class="insignia insignia-libre">{{ item.libres }} libres</span>
+              {% else %}
+              <span class="insignia insignia-llena">Llena</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if item.libres > 0 %}
+              <form class="m-0" method="POST" action="{{ url_for('cliente_reservar', horario_id=item.horario.id) }}">
+                <button type="submit" class="btn btn-salvia btn-sm">Reservar</button>
+              </form>
+              {% else %}
+              <form class="m-0" method="POST" action="{{ url_for('cliente_lista_espera', horario_id=item.horario.id) }}">
+                <button type="submit" class="btn btn-espera btn-sm">Lista de espera</button>
+              </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="6" class="text-center py-4">No hay horarios disponibles por ahora.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crear cuenta | Pilates Studio</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin_usuarios.css') }}">
+</head>
+<body>
+    <main class="contenedor">
+        <a class="volver" href="{{ url_for('inicio') }}">← Volver al panel</a>
+
+        <section class="tarjeta">
+            <h1>Crear cuenta</h1>
+            <p class="descripcion">
+                Crea una cuenta de instructor o de administrador. Las cuentas
+                creadas aquí quedan aprobadas y pueden iniciar sesión.
+            </p>
+
+            {% with mensajes = get_flashed_messages() %}
+                {% if mensajes %}
+                    {% for mensaje in mensajes %}
+                        <div class="mensaje">{{ mensaje }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% if error %}
+                <div class="mensaje error" role="alert">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('crear_usuario_administrativo') }}">
+                <label for="rol">Tipo de cuenta</label>
+                <select id="rol" name="rol" required>
+                    <option value="instructor" {% if rol == 'instructor' %}selected{% endif %}>Instructor</option>
+                    <option value="admin" {% if rol == 'admin' %}selected{% endif %}>Administrador</option>
+                </select>
+
+                <div id="datos-instructor">
+                    <label for="nombre_completo">Nombre completo</label>
+                    <input type="text" id="nombre_completo" name="nombre_completo"
+                           maxlength="150" autocomplete="name" value="{{ nombre_completo }}">
+
+                    <label for="especialidad">Especialidad</label>
+                    <input type="text" id="especialidad" name="especialidad"
+                           maxlength="100" value="{{ especialidad }}">
+                </div>
+
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" required
+                       maxlength="100" autocomplete="email" value="{{ correo }}">
+
+                <label for="contrasena">Contraseña inicial</label>
+                <input type="password" id="contrasena" name="contrasena"
+                       required minlength="8" autocomplete="new-password">
+                <p class="ayuda">
+                    Debe tener al menos 8 caracteres. Comparte las credenciales
+                    de forma segura con la persona.
+                </p>
+
+                <button type="submit">Crear cuenta</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const rol = document.getElementById('rol');
+        const datosInstructor = document.getElementById('datos-instructor');
+        const nombre = document.getElementById('nombre_completo');
+
+        function actualizarCamposInstructor() {
+            const esInstructor = rol.value === 'instructor';
+            datosInstructor.hidden = !esInstructor;
+            nombre.required = esInstructor;
+        }
+
+        rol.addEventListener('change', actualizarCamposInstructor);
+        actualizarCamposInstructor();
+    </script>
+</body>
+</html>

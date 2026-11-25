@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Estadísticas e IA - Pilates Studio</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/estadisticas.css') }}">
+</head>
+
+<body>
+<div class="contenedor">
+
+    <h1>📊 Estadísticas y Predicciones con IA</h1>
+    <p class="subtitulo">
+        Panel administrativo de Pilates Studio
+    </p>
+
+    <!-- ESTADÍSTICAS REALES DE SUPABASE -->
+    <div class="tarjetas">
+
+        <div class="tarjeta">
+            <h3>👥 Total de alumnos</h3>
+            <div class="numero">{{ total_alumnos }}</div>
+            <p>Alumnos registrados</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>📅 Total de reservas</h3>
+            <div class="numero">{{ total_reservas }}</div>
+            <p>Reservas registradas</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>✅ Total de asistencias</h3>
+            <div class="numero">{{ total_asistencias }}</div>
+            <p>Registros de asistencia</p>
+        </div>
+
+        <div class="tarjeta">
+            <h3>🕒 Total de horarios</h3>
+            <div class="numero">{{ total_horarios }}</div>
+            <p>Horarios registrados</p>
+        </div>
+
+    </div>
+
+    <!-- GRÁFICO -->
+    <div class="panel">
+
+        <h2>📈 Reservas y predicción de demanda</h2>
+
+        <div class="grafico">
+            <canvas id="graficoReservas"></canvas>
+        </div>
+
+        <p class="nota">
+            La línea verde representa reservas registradas.
+            La línea amarilla representa estimaciones futuras.
+        </p>
+
+        {% if not predicciones %}
+        <p class="estado">
+            Todavía no existen suficientes datos históricos
+            para mostrar predicciones confiables.
+        </p>
+        {% endif %}
+
+    </div>
+    
+<!-- HORARIOS CON MAYOR DEMANDA -->
+<div class="panel">
+
+    <h2>📅 Horarios con mayor demanda</h2>
+
+    <p>
+        Consulta las reservas confirmadas y el
+        porcentaje de ocupación de cada clase.
+    </p>
+
+    {% if demanda_horarios | default([]) %}
+
+    <div style="overflow-x:auto;">
+
+        <table style="
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+            text-align:left;
+        ">
+
+            <thead>
+                <tr style="
+                    background:#43865c;
+                    color:white;
+                ">
+                    <th style="padding:12px;">Clase</th>
+                    <th style="padding:12px;">Fecha</th>
+                    <th style="padding:12px;">Hora</th>
+                    <th style="padding:12px;">Cupos</th>
+                    <th style="padding:12px;">Reservas</th>
+                    <th style="padding:12px;">Ocupación</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for horario in demanda_horarios %}
+
+                <tr style="border-bottom:1px solid #dce8dd;">
+
+                    <td style="padding:12px;">
+                        {{ horario.clase }}
+                    </td>
+
+                    <td style="padding:12px;">
+                        {{ horario.fecha }}
+                    </td>
+
+                    <td style="padding:12px;">
+                        {{ horario.hora }}
+                    </td>
+
+                    <td style="padding:12px;">
+                        {{ horario.cupos }}
+                    </td>
+
+                    <td style="padding:12px;">
+                        {{ horario.reservas }}
+                    </td>
+
+                    <td style="padding:12px; min-width:130px;">
+
+                        <strong>
+                            {{ horario.ocupacion }}%
+                        </strong>
+
+                        <div class="barra-fondo">
+                            <div class="barra-ocupacion"
+                                 data-ocupacion="{{ horario.ocupacion }}"></div>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="estado">
+        No hay información de demanda disponible
+        para mostrar.
+    </div>
+
+    {% endif %}
+
+    <p class="nota">
+        La ocupación se calcula utilizando las reservas
+        confirmadas y el cupo máximo de cada horario.
+        Una sola clase no es suficiente para identificar
+        tendencias habituales de demanda.
+    </p>
+
+</div>
+
+
+    <!-- CLASES CON BAJA ASISTENCIA -->
+    <div class="panel">
+        <h2>📉 Clases con baja asistencia</h2>
+        <p>Participación registrada en clases que ya finalizaron.</p>
+
+        {% if baja_asistencia | default([]) %}
+        <div style="overflow-x:auto;">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Clase</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Cupos</th>
+                        <th>Reservas</th>
+                        <th>Presentes</th>
+                        <th>Ocupación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for clase in baja_asistencia %}
+                    <tr>
+                        <td>{{ clase.clase }}</td>
+                        <td>{{ clase.fecha }}</td>
+                        <td>{{ clase.hora }}</td>
+                        <td>{{ clase.cupos }}</td>
+                        <td>{{ clase.reservas }}</td>
+                        <td>{{ clase.presentes }}</td>
+                        <td>
+                            <strong>{{ clase.porcentaje }}%</strong>
+                            <div class="barra-fondo">
+                                <div class="barra-ocupacion"
+                                     data-ocupacion="{{ clase.porcentaje }}"></div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="estado">No hay clases finalizadas con datos disponibles.</div>
+        {% endif %}
+        <p class="nota">Un cupo vacío no significa que alguien faltó. Si la asistencia no se ha registrado aún, el resultado podría ser provisional.</p>
+    </div>
+
+    <!-- ANÁLISIS CON GEMINI -->
+    <div class="panel">
+
+        <h2>🤖 Análisis inteligente con Gemini API</h2>
+
+        <p>
+            Gemini analiza las estadísticas del estudio
+            y propone recomendaciones para apoyar
+            las decisiones administrativas.
+        </p>
+
+        <form method="POST"
+              action="{{ url_for('estadisticas') }}">
+
+            <button
+                class="boton-ia"
+                type="submit"
+                name="generar_analisis"
+                value="1">
+                ✨ Generar análisis con Gemini
+            </button>
+
+        </form>
+
+        {% if analisis_ia %}
+
+        <div class="recomendaciones">
+            <h3>💡 Resultados del análisis</h3>
+
+            <div id="analisisGemini"></div>
+        </div>
+
+        <script type="application/json" id="datosGemini">
+            {{ analisis_ia | tojson }}
+        </script>
+
+        {% else %}
+
+        <div class="estado">
+            Presiona el botón para solicitar un análisis
+            de las estadísticas disponibles.
+        </div>
+
+        {% endif %}
+
+        <p class="nota">
+            Las recomendaciones son orientativas.
+            Las predicciones se calculan mediante Python
+            y Gemini interpreta los resultados.
+        </p>
+
+        
+<!-- ALUMNOS SIN ASISTENCIA RECIENTE -->
+<div class="panel">
+
+    <h2>👥 Alumnos sin asistencia en 30 días</h2>
+
+    <p>
+        Identifica alumnos que no registran asistencia
+        durante los últimos 30 días.
+    </p>
+
+    <div class="tarjeta" style="text-align:center; margin:20px 0;">
+
+        <h3>Alumnos sin asistencia reciente</h3>
+
+        <div class="numero">
+            {{ alumnos_inactivos.total | default(0) }}
+        </div>
+
+        <p>
+            Alumnos sin una asistencia marcada como
+            presente en los últimos 30 días.
+        </p>
+
+    </div>
+
+    <p class="nota">
+        Este indicador incluye alumnos que nunca han
+        registrado una asistencia. No significa
+        necesariamente que hayan abandonado el estudio.
+    </p>
+
+</div>
+
+</div>
+
+<!-- DATOS GENERADOS POR FLASK -->
+<script type="application/json" id="datosGrafico">
+{
+    "semanas": {{ semanas | default([]) | tojson }},
+    "reservas": {{ reservas_por_semana | default([]) | tojson }},
+    "predicciones": {{ predicciones | default([]) | tojson }}
+}
+</script>
+
+<script>
+    const informacion = JSON.parse(
+        document.getElementById("datosGrafico").textContent
+    );
+
+    const semanas = informacion.semanas;
+    const reservas = informacion.reservas;
+    const predicciones = informacion.predicciones;
+
+    const etiquetas = [
+        ...semanas,
+        "Próxima semana 1",
+        "Próxima semana 2"
+    ];
+
+    const datosReales = [
+        ...reservas,
+        null,
+        null
+    ];
+
+    // La línea amarilla aparece solo cuando
+    // existe una predicción válida.
+    const datosPrediccion = predicciones.length === 2
+        ? [
+            ...Array(
+                Math.max(reservas.length - 1, 0)
+            ).fill(null),
+            ...(reservas.length
+                ? [reservas[reservas.length - 1]]
+                : []),
+            ...predicciones
+        ]
+        : Array(etiquetas.length).fill(null);
+
+    const contexto = document.getElementById(
+        "graficoReservas"
+    );
+
+    new Chart(contexto, {
+        type: "line",
+        data: {
+            labels: etiquetas,
+            datasets: [
+                {
+                    label: "Reservas reales",
+                    data: datosReales,
+                    borderColor: "#43865c",
+                    backgroundColor: "rgba(67,134,92,0.15)",
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: "Predicción de reservas",
+                    data: datosPrediccion,
+                    borderColor: "#d4a13e",
+                    borderDash: [6, 6],
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        }
+    });
+
+    document.querySelectorAll('.barra-ocupacion').forEach(barra => {
+        const porcentaje = Number(barra.dataset.ocupacion);
+        barra.style.width = (Number.isFinite(porcentaje)
+            ? Math.max(0, Math.min(100, porcentaje))
+            : 0) + '%';
+    });
+
+    // Convertir Markdown de Gemini a HTML seguro.
+    const elementoGemini = document.getElementById(
+        "datosGemini"
+    );
+
+    if (elementoGemini) {
+        const textoGemini = JSON.parse(
+            elementoGemini.textContent
+        );
+
+        const contenedor = document.getElementById(
+            "analisisGemini"
+        );
+
+        if (
+            typeof marked !== "undefined" &&
+            typeof DOMPurify !== "undefined"
+        ) {
+            const html = marked.parse(textoGemini);
+            contenedor.innerHTML = DOMPurify.sanitize(html);
+        } else {
+            // Mostrar texto sin interpretar HTML
+            // si las librerías no están disponibles.
+            contenedor.textContent = textoGemini;
+            contenedor.style.whiteSpace = "pre-wrap";
+        }
+    }
+</script>
+
+</body>
+</html>

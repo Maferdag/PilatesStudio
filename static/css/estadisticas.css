@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,0.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,0.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf7ff,
+        #f6fff9
+    );
+
+    color:#4b5563;
+    padding:25px;
+}
+
+.contenedor{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* TITULOS */
+
+h1{
+    color:#8B6BE8;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.subtitulo{
+    color:#777;
+    margin-bottom:30px;
+}
+
+.panel h2{
+    color:#6c56c8;
+    margin-bottom:15px;
+}
+
+/* TARJETAS KPI */
+
+.tarjetas{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+    margin-bottom:30px;
+}
+
+.tarjeta{
+    background:white;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 25px rgba(139,107,232,0.10);
+
+    transition:.3s;
+}
+
+.tarjeta:hover{
+    transform:translateY(-3px);
+}
+
+.tarjeta h3{
+    color:#6c56c8;
+    margin-top:0;
+}
+
+.numero{
+    font-size:40px;
+    font-weight:700;
+    color:#8B6BE8;
+    margin:15px 0;
+}
+
+.tarjeta p{
+    color:#888;
+}
+
+/* PANELES */
+
+.panel{
+    background:white;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 10px 25px rgba(139,107,232,0.10);
+}
+
+/* GRAFICOS */
+
+.grafico{
+    height:350px;
+    position:relative;
+}
+
+/* ESTADO */
+
+.estado{
+    background:#f5f0ff;
+
+    border-left:5px solid #B89AEF;
+
+    color:#6c56c8;
+
+    border-radius:15px;
+
+    padding:15px;
+}
+
+/* BOTON IA */
+
+.boton-ia{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    border:none;
+
+    color:white;
+
+    padding:15px 24px;
+
+    border-radius:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.boton-ia:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 20px rgba(111,207,151,0.30);
+}
+
+/* RESULTADO IA */
+
+.recomendaciones{
+    background:#faf7ff;
+
+    border-left:6px solid #8B6BE8;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    line-height:1.8;
+}
+
+.recomendaciones h1,
+.recomendaciones h2,
+.recomendaciones h3{
+    color:#6c56c8;
+}
+
+.recomendaciones strong{
+    color:#8B6BE8;
+}
+
+/* TABLAS */
+
+.tabla-datos{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.tabla-datos thead th{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    padding:14px;
+
+    font-weight:600;
+}
+
+.tabla-datos td{
+    padding:14px;
+    border-bottom:1px solid #ede6ff;
+}
+
+.tabla-datos tbody tr:hover{
+    background:#faf7ff;
+}
+
+/* BARRAS */
+
+.barra-fondo{
+    background:#ece7ff;
+
+    height:10px;
+
+    border-radius:50px;
+
+    margin-top:8px;
+
+    overflow:hidden;
+}
+
+.barra-ocupacion{
+    background:
+    linear-gradient(
+        90deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    height:100%;
+
+    width:0;
+
+    border-radius:50px;
+}
+
+/* NOTAS */
+
+.nota{
+    font-size:14px;
+    color:#777;
+    line-height:1.7;
+    margin-top:15px;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f2f2f2;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B89AEF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#8B6BE8;
+}
+
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    .panel,
+    .tarjeta{
+        padding:18px;
+    }
+
+    .numero{
+        font-size:32px;
+    }
+
+    .grafico{
+        height:280px;
+    }
+}

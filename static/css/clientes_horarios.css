@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,0.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,0.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf7ff,
+        #f6fff9
+    );
+
+    min-height:100vh;
+}
+
+
+.barra-superior{
+    background:rgba(255,255,255,0.95);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    0 8px 20px rgba(139,107,232,0.10);
+
+    margin-bottom:40px;
+}
+
+.navbar-brand{
+    color:#8B6BE8 !important;
+    font-size:1.2rem;
+    font-weight:700;
+}
+
+.nav-link{
+    color:#666 !important;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#8B6BE8 !important;
+}
+
+
+h1{
+    color:#8B6BE8;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+
+.tarjeta{
+    background:rgba(255,255,255,0.96);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 30px rgba(139,107,232,0.12);
+}
+
+
+.alerta-salvia{
+    background:#eefaf2;
+
+    color:#2f7c55;
+
+    border:none;
+
+    border-left:5px solid #6FCF97;
+
+    border-radius:15px;
+
+    padding:15px;
+}
+
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead th{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    padding:15px;
+
+    font-weight:600;
+}
+
+.table tbody tr{
+    background:white;
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#faf7ff;
+}
+
+.table td{
+    vertical-align:middle;
+    padding:15px;
+}
+
+
+.insignia{
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:0.85rem;
+
+    font-weight:600;
+}
+
+.insignia-libre{
+    background:#dff7e7;
+    color:#23884a;
+}
+
+.insignia-llena{
+    background:#fde2e4;
+    color:#b42318;
+}
+
+
+.btn-salvia{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    padding:7px 15px;
+
+    transition:.3s;
+}
+
+.btn-salvia:hover{
+    color:white;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 8px 18px rgba(111,207,151,0.35);
+}
+
+
+.btn-espera{
+    background:
+    linear-gradient(
+        135deg,
+        #f6c35c,
+        #f4a261
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    padding:7px 15px;
+}
+
+.btn-espera:hover{
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #efb13f,
+        #ed8d4b
+    );
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f2f2f2;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B89AEF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#8B6BE8;
+}

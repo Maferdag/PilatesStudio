@@ -1,0 +1,512 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pilates Studio | Bienestar en movimiento</title>
+
+    <meta name="description"
+          content="Descubre Pilates Studio. Un espacio para conectar cuerpo y mente mediante el movimiento consciente.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/inicio.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="{{ url_for('inicio') }}" class="brand">
+                <span class="brand-icon">✿</span>
+                <span>Pilates Studio</span>
+            </a>
+
+                        <nav class="nav-links">
+
+                {% if session.get('rol') == 'admin' %}
+
+                    <a href="{{ url_for('inicio') }}">
+                        Panel principal
+                    </a>
+
+                    <a href="{{ url_for('instructores') }}">
+                        Instructores
+                    </a>
+
+                    <a href="{{ url_for('solicitudes_instructores_admin') }}">
+                        Solicitudes
+                    </a>
+
+                    <a href="{{ url_for('estadisticas') }}">
+                        Estadísticas
+                    </a>
+
+                {% elif session.get('rol') == 'alumno' %}
+
+                    <a href="#inicio">Inicio</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#beneficios">Beneficios</a>
+
+                    <a href="{{ url_for('cliente_horarios') }}">
+                        Clases
+                    </a>
+
+                    <a href="{{ url_for('cliente_planes') }}">
+                        Planes
+                    </a>
+
+                {% elif session.get('rol') == 'instructor' %}
+
+                    <a href="{{ url_for('panel_instructor') }}">
+                        Mi panel
+                    </a>
+
+                {% else %}
+
+                    <a href="#inicio">Inicio</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#beneficios">Beneficios</a>
+
+                {% endif %}
+
+            </nav>
+            
+<div class="nav-actions">
+
+    {% if session.get('usuario_id') %}
+
+        {% if session.get('rol') == 'alumno' %}
+
+            <a class="btn btn-primary"
+               href="{{ url_for('cliente_horarios') }}">
+                Reservar clase
+            </a>
+
+        {% elif session.get('rol') == 'admin' %}
+
+            <a class="btn btn-primary"
+               href="{{ url_for('estadisticas') }}">
+                Panel administrativo
+            </a>
+
+        {% elif session.get('rol') == 'instructor' %}
+
+            <a class="btn btn-primary"
+               href="{{ url_for('panel_instructor') }}">
+                Mi panel de instructor
+            </a>
+
+        {% endif %}
+
+        <a class="btn btn-outline"
+           href="{{ url_for('logout') }}">
+            Salir
+        </a>
+
+    {% else %}
+
+        <a class="btn btn-outline"
+           href="{{ url_for('login') }}">
+            Iniciar sesión
+        </a>
+
+        <a class="btn btn-primary"
+           href="{{ url_for('registro') }}">
+            Comenzar ahora
+        </a>
+
+    {% endif %}
+
+</div>
+
+
+        </div>
+    </header>
+
+
+    <main>
+
+            <main>
+
+        {% if session.get('rol') == 'admin' %}
+
+        <!-- PANEL PRINCIPAL DEL ADMINISTRADOR -->
+        <section class="admin-dashboard">
+
+            <div class="admin-header">
+                <h1>Panel de Administración</h1>
+                <p>
+                    Bienvenido/a. Desde aquí puedes gestionar
+                    las operaciones de Pilates Studio.
+                </p>
+            </div>
+
+            <h2 class="admin-section-title">
+                Gestión del estudio
+            </h2>
+
+            <div class="admin-grid">
+
+                <a href="{{ url_for('instructores') }}" class="admin-card">
+                    <div class="admin-icon">🧘‍♀️</div>
+                    <h3>Gestión de instructores</h3>
+                    <p>
+                        Consulta los instructores registrados
+                        y revisa su información.
+                    </p>
+                </a>
+
+                <a href="{{ url_for('solicitudes_instructores_admin') }}" class="admin-card">
+                    <div class="admin-icon">📋</div>
+                    <h3>Solicitudes de instructores</h3>
+                    <p>
+                        Revisa las solicitudes pendientes
+                        y autoriza a nuevos instructores.
+                    </p>
+                </a>
+
+                <a href="{{ url_for('crear_usuario_administrativo') }}" class="admin-card">
+                    <div class="admin-icon">👥</div>
+                    <h3>Crear cuentas</h3>
+                    <p>
+                        Agrega instructores aprobados y nuevas cuentas de administrador.
+                    </p>
+                </a>
+
+                <a href="{{ url_for('estadisticas') }}" class="admin-card">
+                    <div class="admin-icon">📊</div>
+                    <h3>Estadísticas</h3>
+                    <p>
+                        Consulta los datos y el comportamiento
+                        de Pilates Studio.
+                    </p>
+                </a>
+
+            </div>
+
+        </section>
+
+        {% else %}
+
+        <!-- PÁGINA PÚBLICA -->
+        <!-- HERO PRINCIPAL -->
+        <section class="hero" id="inicio">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    ✧ TU ESPACIO DE BIENESTAR
+                </span>
+
+                <h1>
+                    Encuentra tu equilibrio.
+                    <span>Fortalece tu esencia.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Descubre una nueva forma de conectar con tu cuerpo
+                    y tu mente. A través del movimiento consciente,
+                    construimos juntos un camino hacia tu bienestar.
+                </p>
+
+                <div class="hero-buttons">
+
+                    {% if session.get('rol') == 'alumno' %}
+
+                        <a href="{{ url_for('cliente_horarios') }}"
+                           class="btn btn-primary btn-large">
+                            Reserva tu próxima clase →
+                        </a>
+
+                    {% elif session.get('rol') == 'instructor' %}
+
+    <a href="{{ url_for('panel_instructor') }}"
+       class="btn btn-primary btn-large">
+        Mi espacio de instructor →
+    </a>
+
+{% elif not session.get('usuario_id') %}
+
+                        <a href="{{ url_for('registro') }}"
+                           class="btn btn-primary btn-large">
+                            Comienza tu experiencia →
+                        </a>
+
+                        <a href="{{ url_for('login') }}"
+                           class="btn btn-text">
+                            Ya tengo una cuenta
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="hero-note">
+                    <span>✿</span>
+                    Respira, conecta y disfruta cada movimiento.
+                </div>
+
+            </div>
+
+
+            <!-- COMPOSICIÓN VISUAL -->
+            <div class="hero-visual">
+
+                <div class="visual-circle circle-one"></div>
+                <div class="visual-circle circle-two"></div>
+
+                <div class="visual-card">
+
+                    <span class="visual-flower">✿</span>
+
+                    <p class="visual-small">
+                        TU MOMENTO
+                    </p>
+
+                    <h2>
+                        Muévete
+                        con intención.
+                    </h2>
+
+                    <div class="visual-line"></div>
+
+                    <p class="visual-caption">
+                        Equilibrio · Fuerza · Bienestar
+                    </p>
+
+                </div>
+
+                <div class="floating-note">
+                    <span>♡</span>
+                    <div>
+                        <strong>Un espacio para ti</strong>
+                        <small>Tu bienestar es importante</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FRASE -->
+        <section class="quote-section">
+
+            <span>✧</span>
+
+            <p>
+                El bienestar no es un destino,
+                es una forma de disfrutar cada movimiento.
+            </p>
+
+        </section>
+
+
+        <!-- NOSOTROS -->
+        <section class="about section-container" id="nosotros">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">NUESTRA ESENCIA</span>
+
+                <h2>
+                    Más que ejercicio,
+                    <span>una conexión contigo.</span>
+                </h2>
+
+                <p>
+                    En Pilates Studio creemos que cada persona tiene
+                    su propio ritmo. Por eso buscamos ofrecer un espacio
+                    acogedor donde puedas desarrollar fuerza,
+                    flexibilidad y bienestar.
+                </p>
+
+            </div>
+
+            <div class="about-highlight">
+
+                <div class="highlight-icon">✿</div>
+
+                <h3>Tu cuerpo merece atención.</h3>
+
+                <p>
+                    Dedica tiempo a ti, escucha tu cuerpo y descubre
+                    los beneficios de incorporar el movimiento
+                    consciente a tu vida.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- BENEFICIOS -->
+        <section class="benefits" id="beneficios">
+
+            <div class="section-container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">DESCUBRE PILATES</span>
+
+                    <h2>
+                        Tu bienestar comienza
+                        <span>con pequeños movimientos.</span>
+                    </h2>
+
+                    <p>
+                        Una experiencia enfocada en el cuidado integral
+                        de tu cuerpo y tu mente.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit-grid">
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon">◉</div>
+
+                        <h3>Fortaleza</h3>
+
+                        <p>
+                            Trabaja tu fuerza y estabilidad
+                            mediante movimientos controlados.
+                        </p>
+
+                    </article>
+
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon">❀</div>
+
+                        <h3>Flexibilidad</h3>
+
+                        <p>
+                            Explora tus movimientos y desarrolla
+                            mayor conciencia corporal.
+                        </p>
+
+                    </article>
+
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon">♡</div>
+
+                        <h3>Bienestar</h3>
+
+                        <p>
+                            Regálate un momento para conectar
+                            contigo y cuidar tu bienestar.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LLAMADO A LA ACCIÓN -->
+        <section class="cta-section">
+
+            <div class="cta-content">
+
+                <span>✧ TU PRÓXIMO PASO</span>
+
+                <h2>
+                    Tu mejor versión
+                    comienza con un movimiento.
+                </h2>
+
+                <p>
+                    Haz espacio para ti. Te esperamos en Pilates Studio.
+                </p>
+
+                {% if session.get('rol') == 'alumno' %}
+
+                    <a href="{{ url_for('cliente_horarios') }}"
+                       class="btn btn-light">
+                        Explorar horarios →
+                    </a>
+
+                {% elif not session.get('usuario_id') %}
+
+                    <a href="{{ url_for('registro') }}"
+                       class="btn btn-light">
+                        Crear mi cuenta →
+                    </a>
+
+                {% elif session.get('rol') == 'admin' %}
+
+    <a href="{{ url_for('instructores') }}"
+       class="btn btn-light">
+        Ir a administración →
+    </a>
+
+{% elif session.get('rol') == 'instructor' %}
+
+    <a href="{{ url_for('panel_instructor') }}"
+       class="btn btn-light">
+        Ir a mi panel →
+    </a>
+
+{% endif %}
+
+            </div>
+
+        </section>
+         {% endif %}
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div>
+                <a href="{{ url_for('inicio') }}" class="brand">
+                    <span class="brand-icon">✿</span>
+                    Pilates Studio
+                </a>
+
+                <p>
+                    Movimiento consciente,
+                    equilibrio y bienestar.
+                </p>
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#beneficios">Beneficios</a>
+
+                {% if not session.get('usuario_id') %}
+                    <a href="{{ url_for('login') }}">Acceder</a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Pilates Studio. Todos los derechos reservados.
+        </div>
+
+    </footer>
+    
+
+</body>
+</html>

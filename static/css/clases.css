@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf7ff,
+        #f6fff9
+    );
+}
+
+/* ENCABEZADO */
+
+.encabezado{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 25px rgba(139,107,232,.15);
+}
+
+.encabezado h1{
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.encabezado p{
+    margin:0;
+}
+
+/* TARJETAS */
+
+.card{
+    background:rgba(255,255,255,.95);
+
+    border:none;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px rgba(139,107,232,.12);
+}
+
+/* TITULOS */
+
+h4{
+    color:#6c56c8;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* LABELS */
+
+.form-label{
+    color:#666;
+    font-weight:500;
+}
+
+/* INPUTS */
+
+.form-control{
+    background:#f5f0ff;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:12px;
+}
+
+.form-control:focus{
+    background:white;
+
+    border:none;
+
+    box-shadow:
+    0 0 0 4px rgba(139,107,232,.15);
+}
+
+/* BOTÓN PRINCIPAL */
+
+.btn-verde{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:10px 22px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.btn-verde:hover{
+    color:white;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 20px rgba(111,207,151,.35);
+}
+
+/* BOTON EDITAR */
+
+.btn-warning{
+    background:#f2b45f;
+    border:none;
+    color:white;
+}
+
+.btn-warning:hover{
+    background:#e59f42;
+    color:white;
+}
+
+/* BOTON VOLVER */
+
+.btn-outline-secondary{
+    border-radius:15px;
+    font-weight:500;
+}
+
+/* TABLA */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead th{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    font-weight:600;
+
+    padding:15px;
+}
+
+.table tbody tr{
+    background:white;
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#faf7ff;
+}
+
+.table td{
+    vertical-align:middle;
+    padding:15px;
+}
+
+/* PANEL DE EDICIÓN */
+
+.collapse{
+    background:#fcfaff;
+
+    border-radius:18px;
+
+    border:1px solid #ece6ff;
+}
+
+/* MENSAJE VACÍO */
+
+.text-muted{
+    color:#8a8a8a !important;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f2f2f2;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B89AEF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#8B6BE8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .encabezado{
+        padding:22px;
+    }
+
+    .encabezado h1{
+        font-size:1.8rem;
+    }
+
+    .card-body{
+        padding:18px;
+    }
+
+    .table{
+        font-size:.92rem;
+    }
+}

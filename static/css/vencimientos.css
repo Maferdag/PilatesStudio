@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf7ff,
+        #f6fff9
+    );
+}
+
+/* ENCABEZADO */
+
+.encabezado{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:
+    0 10px 25px rgba(139,107,232,.15);
+}
+
+.encabezado h1{
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.encabezado p{
+    margin:0;
+}
+
+/* TARJETAS */
+
+.card{
+    background:rgba(255,255,255,.95);
+
+    border:none;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px rgba(139,107,232,.12);
+}
+
+/* TITULOS */
+
+h4{
+    color:#6c56c8;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* BOTON VOLVER */
+
+.btn-outline-secondary{
+    border-radius:15px;
+    font-weight:500;
+}
+
+/* TABLA */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead th{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+
+    border:none;
+
+    font-weight:600;
+
+    padding:15px;
+}
+
+.table tbody tr{
+    background:white;
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#faf7ff;
+}
+
+.table td{
+    vertical-align:middle;
+    padding:15px;
+}
+
+
+.estado-vigente{
+    background:#dff7e7 !important;
+    color:#23884a !important;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-weight:600;
+}
+
+.estado-proximo{
+    background:#fff4d6 !important;
+    color:#b67a00 !important;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-weight:600;
+}
+
+.estado-vencido{
+    background:#fde2e4 !important;
+    color:#b42318 !important;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-weight:600;
+}
+
+
+.text-muted{
+    color:#8a8a8a !important;
+}
+
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f2f2f2;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B89AEF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#8B6BE8;
+}
+
+
+@media(max-width:768px){
+
+    .encabezado{
+        padding:22px;
+    }
+
+    .encabezado h1{
+        font-size:1.8rem;
+    }
+
+    .card-body{
+        padding:18px;
+    }
+
+    .table{
+        font-size:.9rem;
+    }
+}

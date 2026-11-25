@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(184,154,239,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(111,207,151,.20),
+        transparent 35%
+    ),
+
+    linear-gradient(
+        135deg,
+        #faf7ff,
+        #f6fff9
+    );
+
+    color:#383343;
+}
+
+/* BARRA SUPERIOR */
+
+.barra-superior{
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(15px);
+    box-shadow:0 8px 20px rgba(139,107,232,.10);
+    margin-bottom:40px;
+}
+
+.navbar-brand{
+    color:#8B6BE8 !important;
+    font-size:1.2rem;
+    font-weight:700;
+}
+
+.nav-link{
+    color:#666 !important;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-link:hover,
+.nav-link.activo{
+    color:#8B6BE8 !important;
+}
+
+/* ENCABEZADO */
+
+.encabezado{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+
+    color:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(139,107,232,.15);
+}
+
+.encabezado h1{
+    font-weight:700;
+    font-size:1.9rem;
+    margin-bottom:8px;
+    color:white;
+}
+
+.encabezado p{
+    margin:0;
+}
+
+h1{
+    color:#8B6BE8;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+/* MENSAJES */
+
+.alerta-salvia{
+    background:#eefaf2;
+    color:#2f7c55;
+    border:none;
+    border-left:5px solid #6FCF97;
+    border-radius:15px;
+    padding:15px;
+}
+
+.aviso-demo{
+    background:#fff6e5;
+    color:#8a5a00;
+    border:none;
+    border-left:5px solid #f4a261;
+    border-radius:15px;
+    padding:14px 16px;
+    font-size:.9rem;
+}
+
+/* TARJETAS DE PLAN */
+
+.plan-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+
+    background:rgba(255,255,255,.96);
+    border:1px solid rgba(184,154,239,.20);
+    border-radius:25px;
+    padding:26px 22px;
+    box-shadow:0 10px 30px rgba(139,107,232,.12);
+}
+
+.plan-nombre{
+    font-size:1rem;
+    font-weight:600;
+    color:#6c56c8;
+    margin-bottom:18px;
+}
+
+.plan-precio{
+    font-size:clamp(1.6rem, 5vw, 2.1rem);
+    font-weight:700;
+    color:#383343;
+    line-height:1.1;
+    margin-bottom:6px;
+}
+
+.plan-detalle{
+    color:#777;
+    font-size:.9rem;
+    min-height:1.4em;
+    margin-bottom:0;
+}
+
+.plan-separador{
+    border:none;
+    border-top:1px solid rgba(184,154,239,.30);
+    margin:18px 0;
+    opacity:1;
+}
+
+.plan-ventaja{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    color:#555;
+    font-size:.85rem;
+    margin-bottom:22px;
+}
+
+.plan-check{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#dff7e7;
+    color:#23884a;
+    font-size:.75rem;
+    font-weight:700;
+}
+
+.plan-accion{
+    margin-top:auto;
+}
+
+/* Botón de la tarjeta: contorno lila */
+
+.btn-plan{
+    display:block;
+    width:100%;
+    background:transparent;
+    color:#6c56c8;
+    border:2px solid #B89AEF;
+    border-radius:15px;
+    padding:11px 16px;
+    font-weight:600;
+    font-size:.9rem;
+    text-align:center;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.btn-plan:hover{
+    color:white;
+    border-color:transparent;
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(111,207,151,.35);
+}
+
+/* Plan destacado */
+
+.plan-destacado{
+    background:
+    linear-gradient(
+        160deg,
+        #8B6BE8,
+        #6c56c8
+    );
+    border:none;
+    color:white;
+    box-shadow:0 16px 36px rgba(108,86,200,.32);
+}
+
+.plan-destacado .plan-nombre,
+.plan-destacado .plan-precio{
+    color:white;
+}
+
+.plan-destacado .plan-detalle,
+.plan-destacado .plan-ventaja{
+    color:rgba(255,255,255,.88);
+}
+
+.plan-destacado .plan-separador{
+    border-top-color:rgba(255,255,255,.30);
+}
+
+.plan-destacado .btn-plan{
+    background:white;
+    color:#6c56c8;
+    border-color:white;
+}
+
+.plan-destacado .btn-plan:hover{
+    background:#f3edff;
+    color:#6c56c8;
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+}
+
+.plan-sello{
+    align-self:flex-start;
+    background:#dff7e7;
+    color:#23884a;
+    font-size:.75rem;
+    font-weight:600;
+    padding:5px 12px;
+    border-radius:30px;
+    margin-bottom:14px;
+}
+
+/* TARJETA GENERAL (resumen de pago e historial) */
+
+.tarjeta{
+    background:rgba(255,255,255,.96);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(139,107,232,.12);
+}
+
+.resumen-fila{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+    border-bottom:1px solid rgba(184,154,239,.25);
+}
+
+.resumen-fila:last-of-type{
+    border-bottom:none;
+}
+
+.resumen-fila span:first-child{
+    color:#777;
+}
+
+.resumen-total{
+    font-size:1.3rem;
+    font-weight:700;
+    color:#6c56c8;
+}
+
+/* BOTONES */
+
+.btn-salvia{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+    color:white;
+    border:none;
+    border-radius:15px;
+    font-weight:600;
+    padding:11px 24px;
+    transition:.3s;
+}
+
+.btn-salvia:hover{
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(111,207,151,.35);
+}
+
+.btn-salvia:disabled{
+    opacity:.6;
+    transform:none;
+    box-shadow:none;
+}
+
+.btn-volver{
+    border-radius:15px;
+    font-weight:500;
+}
+
+/* TABLA DE PAGOS */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead th{
+    background:
+    linear-gradient(
+        135deg,
+        #B89AEF,
+        #6FCF97
+    );
+    color:white;
+    border:none;
+    padding:15px;
+    font-weight:600;
+}
+
+.table tbody tr{
+    background:white;
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#faf7ff;
+}
+
+.table td{
+    vertical-align:middle;
+    padding:15px;
+}
+
+.insignia{
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:.85rem;
+    font-weight:600;
+}
+
+.insignia-libre{
+    background:#dff7e7;
+    color:#23884a;
+}
+
+/* ENFOQUE VISIBLE PARA TECLADO */
+
+.btn-plan:focus-visible,
+.btn-salvia:focus-visible,
+.btn-volver:focus-visible{
+    outline:3px solid rgba(139,107,232,.45);
+    outline-offset:2px;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f2f2f2;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#B89AEF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#8B6BE8;
+}
+
+/* CELULAR */
+
+@media(max-width:768px){
+
+    .encabezado{
+        padding:22px;
+    }
+
+    .encabezado h1{
+        font-size:1.5rem;
+    }
+
+    .plan-card{
+        padding:20px 16px;
+        border-radius:20px;
+    }
+
+    .tarjeta{
+        padding:18px;
+    }
+}

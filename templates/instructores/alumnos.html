@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Alumnos del Instructor - Pilates Studio</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Diseño original -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/instructores.css') }}"
+    >
+
+    <style>
+
+        .titulo-seccion {
+            color: #7454bf;
+            font-weight: 700;
+        }
+
+        .tarjeta-alumnos {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(116, 84, 191, 0.08);
+        }
+
+        .tabla-alumnos thead th {
+            background: linear-gradient(
+                90deg,
+                #b49bea,
+                #70cfa0
+            );
+            color: white;
+            padding: 16px;
+            white-space: nowrap;
+        }
+
+        .tabla-alumnos tbody td {
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+        .boton-volver {
+            border: 1px solid #b49bea;
+            border-radius: 20px;
+            color: #7454bf;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .boton-volver:hover {
+            background: #f1ebff;
+            color: #6245aa;
+        }
+
+        .nombre-instructor {
+            color: #7454bf;
+            font-weight: 600;
+        }
+
+        .estado-confirmada {
+            background: #d9f3e3;
+            color: #287847;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .estado-otro {
+            background: #f5ebd1;
+            color: #906c20;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .resumen {
+            background: #f3efff;
+            padding: 15px 20px;
+            border-radius: 15px;
+            color: #7454bf;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <!-- ENCABEZADO -->
+
+    <h1 class="text-center titulo">
+        🪷 Pilates Studio
+    </h1>
+
+    <p class="text-center text-muted">
+        Panel Administrativo
+    </p>
+
+    <!-- VOLVER -->
+
+    <div class="mb-4">
+
+        <a
+            href="{{ url_for('instructores') }}"
+            class="boton-volver"
+        >
+            ← Volver a instructores
+        </a>
+
+    </div>
+
+    <!-- INFORMACIÓN DEL INSTRUCTOR -->
+
+    <h3 class="titulo-seccion mb-3">
+        👥 Alumnos y horarios
+    </h3>
+
+    <p class="mb-4">
+
+        Instructor:
+
+        <span class="nombre-instructor">
+            {{ instructor.nombre_completo }}
+        </span>
+
+    </p>
+
+    <!-- TARJETA PRINCIPAL -->
+
+    <div class="tarjeta-alumnos">
+
+        <h5 class="mb-4">
+            📅 Alumnos inscritos en sus clases
+        </h5>
+
+        <div class="table-responsive">
+
+            <table
+                class="table table-bordered table-hover tabla-alumnos"
+            >
+
+                <!-- ENCABEZADOS -->
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del alumno</th>
+                        <th>Clase</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                    </tr>
+
+                </thead>
+
+                <!-- DATOS -->
+
+                <tbody>
+
+                    {% for alumno, clase, horario, reserva in reservas %}
+
+                    <tr>
+
+                        <td>
+                            {{ alumno.id }}
+                        </td>
+
+                        <td>
+                            {{ alumno.nombre_completo }}
+                        </td>
+
+                        <td>
+                            {{ clase.nombre_clase }}
+                        </td>
+
+                        <td>
+                            {{ horario.fecha.strftime('%d/%m/%Y') }}
+                        </td>
+
+                        <td>
+                            {{ horario.hora.strftime('%H:%M') }}
+                        </td>
+
+                        <td>
+
+                            {% if reserva.estado == 'confirmada' %}
+
+                                <span class="estado-confirmada">
+                                    Confirmada
+                                </span>
+
+                            {% else %}
+
+                                <span class="estado-otro">
+                                    {{ reserva.estado or 'Pendiente' }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="6" class="text-center py-4">
+
+                            Esta instructora todavía no tiene
+                            reservas activas en sus clases.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- RESUMEN -->
+
+        <div class="resumen">
+
+            <strong>
+                📊 Total de reservas:
+                {{ reservas | length }}
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

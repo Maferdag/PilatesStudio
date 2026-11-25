@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Panel del Instructor - Pilates Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --lila: #B89AEF;
+            --lila-oscuro: #8063C7;
+            --lila-profundo: #6650A5;
+            --lila-claro: #F2EDFC;
+            --verde: #6FCF97;
+            --verde-oscuro: #399B70;
+            --verde-claro: #EAF8EF;
+            --fondo: #FCFAFF;
+            --blanco: #FFFFFF;
+            --texto: #383343;
+            --texto-suave: #777180;
+            --borde: #EAE3F5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--texto);
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(184,154,239,.25), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(111,207,151,.20), transparent 35%),
+                linear-gradient(135deg, #faf7ff, #f6fff9);
+        }
+
+        .barra-superior {
+            background: linear-gradient(135deg, var(--lila), var(--verde));
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .marca {
+            color: white;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .btn-salir {
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.8);
+            padding: 9px 18px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: .2s;
+        }
+
+        .btn-salir:hover {
+            background: white;
+            color: var(--lila-profundo);
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1150px;
+            margin: 35px auto;
+        }
+
+        .tarjeta {
+            background: var(--blanco);
+            border-radius: 25px;
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(139,107,232,.12);
+        }
+
+        .bienvenida {
+            background: linear-gradient(135deg, rgba(184,154,239,.18), rgba(111,207,151,.18));
+            border: 1px solid var(--borde);
+        }
+
+        h1 {
+            color: var(--lila-profundo);
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: var(--lila-profundo);
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        .descripcion {
+            color: var(--texto-suave);
+            font-size: 14px;
+        }
+
+        .especialidad {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .seccion {
+            margin-bottom: 12px;
+        }
+
+        .formulario {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .campo-completo {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--texto);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--borde);
+            border-radius: 13px;
+            background: #fff;
+            color: var(--texto);
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--lila);
+            box-shadow: 0 0 0 3px rgba(184,154,239,.16);
+        }
+
+        .btn-publicar {
+            border: none;
+            border-radius: 15px;
+            padding: 13px 24px;
+            background: linear-gradient(135deg, var(--lila), var(--verde));
+            color: white;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-publicar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(139,107,232,.2);
+        }
+
+        .mensaje {
+            padding: 13px 17px;
+            margin-bottom: 18px;
+            border-radius: 13px;
+            background: var(--lila-claro);
+            color: var(--lila-profundo);
+            font-size: 13px;
+        }
+
+        .tabla-contenedor {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--lila), var(--verde));
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--borde);
+        }
+
+        tbody tr:hover {
+            background: var(--lila-claro);
+        }
+
+        .estado {
+            display: inline-block;
+            background: var(--verde-claro);
+            color: var(--verde-oscuro);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .sin-horarios {
+            color: var(--texto-suave);
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        @media (max-width: 650px) {
+            .barra-superior {
+                padding: 15px 5%;
+            }
+
+            .contenedor {
+                width: 92%;
+                margin: 22px auto;
+            }
+
+            .tarjeta {
+                padding: 20px;
+            }
+
+            .formulario {
+                grid-template-columns: 1fr;
+            }
+
+            .campo-completo {
+                grid-column: auto;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="barra-superior">
+        <div class="marca">🪷 Pilates Studio</div>
+        <a href="{{ url_for('logout') }}" class="btn-salir">
+            Cerrar sesión
+        </a>
+    </nav>
+
+    <main class="contenedor">
+
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for mensaje in mensajes %}
+                    <div class="mensaje">{{ mensaje }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <section class="tarjeta bienvenida">
+            <h1>¡Bienvenido/a, {{ instructor.nombre_completo }}!</h1>
+
+            <p class="descripcion">
+                Este es tu espacio personal como instructor.
+                Aquí puedes administrar y publicar tus horarios de clases.
+            </p>
+
+            <p class="especialidad">
+                <strong>Especialidad:</strong>
+                {{ instructor.especialidad or 'No especificada' }}
+            </p>
+        </section>
+
+        <section class="tarjeta">
+            <h2>Publicar un nuevo horario</h2>
+
+            <p class="descripcion seccion">
+                Selecciona una clase, indica cuándo la impartirás
+                y cuántos alumnos podrán reservarla.
+            </p>
+
+            <form
+                action="{{ url_for('crear_horario_instructor') }}"
+                method="POST"
+                class="formulario"
+            >
+
+                <div class="campo campo-completo">
+                    <label for="id_clase">Clase</label>
+
+                    <select id="id_clase" name="id_clase" required>
+                        <option value="">Selecciona una clase</option>
+
+                        {% for clase in clases %}
+                            <option value="{{ clase.id }}">
+                                {{ clase.nombre_clase }}
+                                ({{ clase.duracion_minutos }} minutos)
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="fecha">Fecha</label>
+                    <input
+                        type="date"
+                        id="fecha"
+                        name="fecha"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="hora">Hora de inicio</label>
+                    <input
+                        type="time"
+                        id="hora"
+                        name="hora"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="cupo_maximo">Cantidad máxima de alumnos</label>
+                    <input
+                        type="number"
+                        id="cupo_maximo"
+                        name="cupo_maximo"
+                        min="1"
+                        max="100"
+                        placeholder="Ejemplo: 10"
+                        required
+                    >
+                </div>
+
+                <div class="campo campo-completo">
+                    <button type="submit" class="btn-publicar">
+                        + Publicar horario
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="tarjeta">
+            <h2>Mis horarios de clases</h2>
+
+            {% if horarios %}
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Clase</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Cupos máximos</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for horario in horarios %}
+                                <tr>
+                                    <td>{{ horario.clase.nombre_clase }}</td>
+                                    <td>{{ horario.fecha.strftime('%d/%m/%Y') }}</td>
+                                    <td>{{ horario.hora.strftime('%H:%M') }}</td>
+                                    <td>{{ horario.cupo_maximo }}</td>
+                                    <td>
+                                        <span class="estado">Publicado</span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="sin-horarios">
+                    Todavía no tienes horarios publicados.
+                    Utiliza el formulario para agregar tu primera clase.
+                </p>
+            {% endif %}
+        </section>
+
+    </main>
+
+</body>
+</html>

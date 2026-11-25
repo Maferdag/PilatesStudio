@@ -1,0 +1,286 @@
+
+/* =========================================
+   SOLICITUDES DE INSTRUCTORES
+   DISEÑO PILATES STUDIO
+========================================= */
+
+/* TIPOGRAFÍA */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* VARIABLES DE COLOR */
+:root {
+    --lila: #B89AEF;
+    --lila-oscuro: #8063C7;
+    --lila-profundo: #6650A5;
+    --lila-claro: #F2EDFC;
+
+    --verde: #6FCF97;
+    --verde-oscuro: #399B70;
+    --verde-claro: #EAF8EF;
+
+    --fondo: #FCFAFF;
+    --blanco: #FFFFFF;
+
+    --texto: #383343;
+    --texto-suave: #777180;
+}
+
+/* CONFIGURACIÓN GENERAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 45px 20px;
+
+    font-family: 'Poppins', sans-serif;
+    color: var(--texto);
+
+    background:
+        radial-gradient(circle at top left, rgba(184,154,239,.25), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(111,207,151,.20), transparent 35%),
+        linear-gradient(135deg, #faf7ff, #f6fff9);
+}
+
+/* CONTENEDOR PRINCIPAL */
+.contenedor {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+/* TÍTULO */
+h1 {
+    margin-bottom: 10px;
+
+    color: var(--lila-profundo);
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* DESCRIPCIÓN */
+.descripcion {
+    max-width: 650px;
+    margin: 0 auto 35px;
+
+    color: var(--texto-suave);
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* TARJETA DE CADA SOLICITUD */
+.solicitud {
+    margin-bottom: 22px;
+    padding: 28px 30px;
+
+    background: var(--blanco);
+    border: 1px solid rgba(184,154,239,.15);
+    border-radius: 25px;
+
+    box-shadow: 0 10px 30px rgba(139,107,232,.12);
+
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.solicitud:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 35px rgba(139,107,232,.17);
+}
+
+/* NOMBRE DEL INSTRUCTOR */
+.solicitud h2 {
+    margin-bottom: 20px;
+
+    color: var(--lila-profundo);
+    font-size: 21px;
+    font-weight: 600;
+}
+
+/* DATOS */
+.dato {
+    margin-bottom: 12px;
+
+    color: var(--texto-suave);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.dato strong {
+    color: var(--texto);
+    font-weight: 600;
+}
+
+/* ESTADO PENDIENTE */
+.dato:last-of-type {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 7px 14px;
+
+    color: var(--lila-profundo);
+    background: var(--lila-claro);
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* BOTONES */
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.acciones form {
+    margin: 0;
+}
+
+.acciones button {
+    min-height: 43px;
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 15px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.acciones button:hover {
+    transform: translateY(-2px);
+}
+
+/* APROBAR */
+.aprobar {
+    color: var(--blanco);
+    background: linear-gradient(135deg, #B89AEF, #6FCF97);
+    box-shadow: 0 5px 15px rgba(111,207,151,.20);
+}
+
+.aprobar:hover {
+    box-shadow: 0 8px 20px rgba(111,207,151,.30);
+}
+
+/* RECHAZAR */
+.rechazar {
+    color: #B94D61;
+    background: #FFF0F2;
+    border: 1px solid #F8D8DE !important;
+}
+
+.rechazar:hover {
+    background: #FFE5E9;
+}
+
+/* MENSAJES */
+.mensaje {
+    margin-bottom: 20px;
+    padding: 14px 18px;
+
+    color: var(--verde-oscuro);
+    background: var(--verde-claro);
+    border: 1px solid rgba(111,207,151,.25);
+    border-radius: 15px;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* SIN SOLICITUDES */
+.vacio {
+    padding: 45px 25px;
+
+    background: var(--blanco);
+    border: 1px solid rgba(184,154,239,.15);
+    border-radius: 25px;
+
+    box-shadow: 0 10px 30px rgba(139,107,232,.12);
+    text-align: center;
+}
+
+.vacio h2 {
+    margin-bottom: 12px;
+
+    color: var(--lila-profundo);
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.vacio p {
+    color: var(--texto-suave);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* VOLVER AL INICIO */
+.volver {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 11px 20px;
+
+    color: var(--lila-profundo);
+    background: var(--blanco);
+    border: 1px solid rgba(184,154,239,.35);
+    border-radius: 15px;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: all .2s ease;
+}
+
+.volver:hover {
+    color: var(--blanco);
+    background: linear-gradient(135deg, #B89AEF, #6FCF97);
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    body {
+        padding: 28px 15px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .descripcion {
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+
+    .solicitud {
+        padding: 22px 18px;
+    }
+
+    .solicitud h2 {
+        font-size: 18px;
+    }
+
+    .acciones {
+        flex-direction: column;
+    }
+
+    .acciones form,
+    .acciones button {
+        width: 100%;
+    }
+
+    .volver {
+        display: block;
+        text-align: center;
+    }
+}

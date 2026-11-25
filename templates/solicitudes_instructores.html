@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes de instructores | Pilates Studio</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/solicitudes_instructores.css') }}">
+    
+</head>
+
+<body>
+    <main class="contenedor">
+
+        <h1>Solicitudes de instructores</h1>
+
+        <p class="descripcion">
+            Revisa las solicitudes y decide quién puede formar parte
+            del equipo de Pilates Studio.
+        </p>
+
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for mensaje in mensajes %}
+                    <div class="mensaje">{{ mensaje }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if solicitudes %}
+
+            {% for solicitud in solicitudes %}
+
+                <section class="solicitud">
+
+                    <h2>{{ solicitud.nombre_completo }}</h2>
+
+                    <p class="dato">
+                        <strong>Correo:</strong>
+                        {{ solicitud.correo }}
+                    </p>
+
+                    <p class="dato">
+                        <strong>Especialidad:</strong>
+                        {{ solicitud.especialidad or 'No especificada' }}
+                    </p>
+
+                    <p class="dato">
+                        <strong>Estado:</strong>
+                        Pendiente de aprobación
+                    </p>
+
+                    <div class="acciones">
+
+                        <form
+                            method="POST"
+                            action="{{ url_for(
+                                'aprobar_instructor',
+                                usuario_id=solicitud.usuario_id
+                            ) }}"
+                            onsubmit="return confirm('¿Confirmas que deseas aprobar a este instructor?');"
+                        >
+                            <button type="submit" class="aprobar">
+                                Aprobar instructor
+                            </button>
+                        </form>
+
+                        <form
+                            method="POST"
+                            action="{{ url_for(
+                                'rechazar_instructor',
+                                usuario_id=solicitud.usuario_id
+                            ) }}"
+                            onsubmit="return confirm('¿Confirmas que deseas rechazar esta solicitud?');"
+                        >
+                            <button type="submit" class="rechazar">
+                                Rechazar solicitud
+                            </button>
+                        </form>
+
+                    </div>
+                </section>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="vacio">
+                <h2>No hay solicitudes pendientes</h2>
+                <p>
+                    Cuando una persona se registre como instructor,
+                    su solicitud aparecerá aquí.
+                </p>
+            </div>
+
+        {% endif %}
+
+        <a class="volver" href="{{ url_for('inicio') }}">
+            ← Volver al inicio
+        </a>
+
+    </main>
+</body>
+</html>

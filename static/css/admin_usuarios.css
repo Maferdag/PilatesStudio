@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --lila: #8063C7;
+    --lila-claro: #F2EDFC;
+    --verde: #399B70;
+    --fondo: #FCFAFF;
+    --texto: #383343;
+    --suave: #777180;
+    --borde: #EAE3F5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 32px 16px;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: 'Poppins', sans-serif;
+}
+
+.contenedor {
+    width: min(100%, 680px);
+    margin: 0 auto;
+}
+
+.volver {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: var(--lila);
+    text-decoration: none;
+}
+
+.tarjeta {
+    padding: clamp(22px, 5vw, 40px);
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(139, 107, 232, 0.1);
+}
+
+h1 {
+    margin: 0 0 8px;
+    color: var(--lila);
+}
+
+.descripcion,
+.ayuda {
+    color: var(--suave);
+    line-height: 1.6;
+}
+
+.descripcion {
+    margin: 0 0 24px;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--borde);
+    border-radius: 11px;
+    background: #fff;
+    color: var(--texto);
+    font: inherit;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--lila-claro);
+    border-color: var(--lila);
+}
+
+#datos-instructor {
+    display: grid;
+    gap: 10px;
+}
+
+#datos-instructor[hidden] {
+    display: none;
+}
+
+.ayuda {
+    margin: 0;
+    font-size: 12px;
+}
+
+button {
+    margin-top: 12px;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #B89AEF, #6FCF97);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mensaje {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--lila-claro);
+    color: var(--lila);
+}
+
+.mensaje.error {
+    background: #fff0f0;
+    color: #9c3434;
+}

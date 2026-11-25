@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Nueva Contraseña - Pilates Studio</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/restablecer.css') }}">
+</head>
+
+<body>
+
+    <div class="contenedor-principal">
+
+        <div class="logo">🪷</div>
+
+        <h2>Crea una nueva contraseña</h2>
+
+        <p class="subtitulo">
+            Ingresa una nueva contraseña para acceder nuevamente a tu cuenta.
+        </p>
+
+        {% if error %}
+        <div class="mensaje-error">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <label for="pass1">
+                Nueva contraseña
+            </label>
+
+            <div class="contenedor-password">
+
+                <input
+                    type="password"
+                    id="pass1"
+                    name="contrasena"
+                    placeholder="Ingresa tu nueva contraseña"
+                    required>
+
+                <button
+                    type="button"
+                    class="boton-ojo"
+                    id="btn-pass1"
+                    onclick="togglePassword('pass1', 'btn-pass1')">
+
+                    👁️
+
+                </button>
+
+            </div>
+
+            <label for="pass2">
+                Repetir contraseña
+            </label>
+
+            <div class="contenedor-password">
+
+                <input
+                    type="password"
+                    id="pass2"
+                    name="repetir_contrasena"
+                    placeholder="Confirma tu contraseña"
+                    required>
+
+                <button
+                    type="button"
+                    class="boton-ojo"
+                    id="btn-pass2"
+                    onclick="togglePassword('pass2', 'btn-pass2')">
+
+                    👁️
+
+                </button>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn-principal">
+
+                Cambiar Contraseña
+
+            </button>
+
+        </form>
+
+        <p class="frase">
+            "Tu bienestar comienza con cada nuevo paso."
+        </p>
+
+    </div>
+
+    <script>
+        function togglePassword(idInput, idBoton) {
+
+            const input = document.getElementById(idInput);
+            const boton = document.getElementById(idBoton);
+
+            if (input.type === "password") {
+                input.type = "text";
+                boton.innerHTML = "🙈";
+            } else {
+                input.type = "password";
+                boton.innerHTML = "👁️";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
